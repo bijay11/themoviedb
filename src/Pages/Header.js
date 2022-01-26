@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
+console.log(currentUser)
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -65,22 +66,18 @@ const Header = () => {
               </>
             )}
           </ul>
-          {/* <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form> */}
+
           <div className="d-flex">
             {currentUser && (
-              <button className="btn btn-link" onClick={handleLogout}>
-                Log Out
-              </button>
+              <>
+                <div className="text-white">
+                  {currentUser && currentUser.email} | {"\u00A0"}
+                </div>
+
+                <Link to="#" onClick={handleLogout}>
+                  Log Out
+                </Link>
+              </>
             )}
           </div>
         </div>

@@ -21,8 +21,11 @@ const Login = () => {
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/entertainment");
     } catch (error) {
-      console.log("test error", error);
-      setError("Failed to log in");
+      setError(
+        error.code === "auth/user-not-found"
+          ? "Email not Found"
+          : "Wrong Password"
+      );
     }
     setLoading(false);
   };
@@ -33,11 +36,11 @@ const Login = () => {
       style={{ minHeight: "100vh" }}
     >
       <div className="w-100" style={{ maxWidth: "400px" }}>
+        {error && <div className="alert alert-danger">{error}</div>}
         <div className="card">
           <div className="card-body">
             <h2 className="text-center">Log In</h2>
 
-            {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
@@ -74,7 +77,13 @@ const Login = () => {
               </button>
             </form>
             <div className="w-100 text-center mt-2">
-              Need an account? <Link to="/signup">Sign Up</Link>
+              Need an account?
+              <Link
+                to="/signup
+              "
+              >
+                Sign Up
+              </Link>
             </div>
           </div>
         </div>

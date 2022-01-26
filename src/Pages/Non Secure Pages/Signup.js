@@ -23,8 +23,11 @@ const Signup = () => {
       await signup(emailRef.current.value, passwordRef.current.value);
       navigate("/");
     } catch (error) {
-      console.log("test error", error);
-      setError("Failed to create account", error);
+      setError(
+        error.code === "auth/weak-password"
+          ? "Password should be at least 6 characters"
+          : "Failed to create account"
+      );
     }
     setLoading(false);
   };
@@ -35,11 +38,11 @@ const Signup = () => {
       style={{ minHeight: "100vh" }}
     >
       <div className="w-100" style={{ maxWidth: "400px" }}>
+        {error && <div className="alert alert-danger">{error}</div>}
         <div className="card">
           <div className="card-body">
             <h2 className="text-center">Sign Up</h2>
 
-            {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
@@ -88,7 +91,7 @@ const Signup = () => {
               </button>
             </form>
             <div className="w-100 text-center mt-2">
-              Already have an account? <Link to="/login">Log In</Link>
+              Already have an account? <Link to="/">Log In</Link>
             </div>
           </div>
         </div>
