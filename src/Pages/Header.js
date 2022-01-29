@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ isPremiumMember }) => {
   const [error, setError] = useState("");
   const { currentUser, logout, loginUser } = useAuth();
 
@@ -63,6 +63,18 @@ const Header = () => {
                     TV Series
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink to="/watchList" className="nav-link">
+                    My Watch List
+                  </NavLink>
+                </li>
+                {isPremiumMember && (
+                  <li className="nav-item">
+                    <NavLink to="/premiumMovies" className="nav-link">
+                      Premium Movies
+                    </NavLink>
+                  </li>
+                )}
               </>
             )}
           </ul>

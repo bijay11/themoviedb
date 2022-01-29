@@ -15,7 +15,12 @@ const Trending = () => {
         onChange={({ target }) => setInputVal(target.value)}
       />
       {getMovies(trending, inputVal).map((trend) => (
-        <MediaObject item={trend} key={trend.id} overview={trend.overview} />
+        <MediaObject
+          item={trend}
+          key={trend.id}
+          overview={trend.overview}
+          isWatchList={false}
+        />
       ))}
     </>
   );

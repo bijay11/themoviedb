@@ -19,6 +19,7 @@ const TvSeries = () => {
           item={tvSerie}
           key={tvSerie.id}
           overview={tvSerie.overview}
+          isWatchList={false}
         />
       ))}
     </>

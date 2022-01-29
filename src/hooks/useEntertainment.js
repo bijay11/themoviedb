@@ -13,6 +13,7 @@ const useEntertainment = () => {
     slidesToShow: 6,
     slidesToScroll: 6,
   };
+
   const getMovies = (movieArr, searchKeyword) => {
     const filteredMovies = movieArr.filter((movie) =>
       Object.values(movie).some((s) =>

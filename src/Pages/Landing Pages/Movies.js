@@ -16,7 +16,12 @@ const Movies = () => {
         onChange={({ target }) => setInputVal(target.value)}
       />
       {getMovies(movies, inputVal).map((movie) => (
-        <MediaObject item={movie} key={movie.id} overview={movie.overview} />
+        <MediaObject
+          item={movie}
+          key={movie.id}
+          overview={movie.overview}
+          isWatchList={false}
+        />
       ))}
     </>
   );
