@@ -1,12 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
-console.log(currentUser)
+  const { currentUser, logout, loginUser } = useAuth();
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -41,7 +41,7 @@ console.log(currentUser)
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {currentUser && (
+            {currentUser && loginUser && (
               <>
                 <li className="nav-item">
                   <NavLink to="/entertainment" className="nav-link">
@@ -68,7 +68,7 @@ console.log(currentUser)
           </ul>
 
           <div className="d-flex">
-            {currentUser && (
+            {currentUser && loginUser && (
               <>
                 <div className="text-white">
                   {currentUser && currentUser.email} | {"\u00A0"}
@@ -85,4 +85,4 @@ console.log(currentUser)
     </nav>
   );
 };
-export default Header;
+export default React.memo(Header);

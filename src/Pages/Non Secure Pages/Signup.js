@@ -7,7 +7,6 @@ const Signup = () => {
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const { signup } = useAuth();
   const navigate = useNavigate();
@@ -19,8 +18,9 @@ const Signup = () => {
     }
     try {
       setError("");
-      setLoading(true);
+
       await signup(emailRef.current.value, passwordRef.current.value);
+
       navigate("/");
     } catch (error) {
       setError(
@@ -29,7 +29,6 @@ const Signup = () => {
           : "Failed to create account"
       );
     }
-    setLoading(false);
   };
 
   return (
@@ -69,6 +68,7 @@ const Signup = () => {
                   required
                 />
               </div>
+
               <div className="mb-3">
                 <label htmlFor="confirmPassword" className="form-label">
                   Confirm Password
@@ -82,11 +82,7 @@ const Signup = () => {
                 />
               </div>
 
-              <button
-                disabled={loading}
-                type="submit"
-                className="btn btn-primary w-100"
-              >
+              <button type="submit" className="btn btn-primary w-100">
                 Sign Up
               </button>
             </form>

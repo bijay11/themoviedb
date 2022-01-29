@@ -6,9 +6,8 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const { login } = useAuth();
+  const { login, setLoginUser } = useAuth();
 
   const navigate = useNavigate();
 
@@ -17,9 +16,11 @@ const Login = () => {
 
     try {
       setError("");
-      setLoading(true);
+      setLoginUser(true);
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/entertainment");
+
+      //<Navigate to="/entertainment" />;
     } catch (error) {
       setError(
         error.code === "auth/user-not-found"
@@ -27,7 +28,6 @@ const Login = () => {
           : "Wrong Password"
       );
     }
-    setLoading(false);
   };
 
   return (
@@ -68,11 +68,7 @@ const Login = () => {
                 />
               </div>
 
-              <button
-                disabled={loading}
-                type="submit"
-                className="btn btn-primary w-100"
-              >
+              <button type="submit" className="btn btn-primary w-100">
                 Log In
               </button>
             </form>

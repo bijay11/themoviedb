@@ -9,6 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [loginUser, setLoginUser] = useState(false);
 
   //to sign up
   const signup = (email, password) =>
@@ -33,6 +34,8 @@ export const AuthProvider = ({ children }) => {
     signup,
     login,
     logout,
+    loginUser,
+    setLoginUser,
   };
 
   return (
