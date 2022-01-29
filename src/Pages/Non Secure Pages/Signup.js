@@ -8,7 +8,7 @@ const Signup = () => {
   const confirmPasswordRef = useRef(null);
   const [error, setError] = useState("");
 
-  const { signup } = useAuth();
+  const { signup, setLoginUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ const Signup = () => {
     }
     try {
       setError("");
-
+      setLoginUser(false);
       await signup(emailRef.current.value, passwordRef.current.value);
 
       navigate("/");

@@ -13,6 +13,15 @@ const useEntertainment = () => {
     slidesToShow: 6,
     slidesToScroll: 6,
   };
+  const getMovies = (movieArr, searchKeyword) => {
+    const filteredMovies = movieArr.filter((movie) =>
+      Object.values(movie).some((s) =>
+        ("" + s).toLowerCase().includes(searchKeyword)
+      )
+    );
+
+    return filteredMovies;
+  };
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${movieKey}`)
@@ -35,6 +44,7 @@ const useEntertainment = () => {
     trending,
     tvSeries,
     settings,
+    getMovies,
   };
 };
 export default useEntertainment;
