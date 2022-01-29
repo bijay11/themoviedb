@@ -15,7 +15,11 @@ const TvSeries = () => {
         onChange={({ target }) => setInputVal(target.value)}
       />
       {getMovies(tvSeries, inputVal).map((tvSerie) => (
-        <MediaObject item={tvSerie} key={tvSerie.id} />
+        <MediaObject
+          item={tvSerie}
+          key={tvSerie.id}
+          overview={tvSerie.overview}
+        />
       ))}
     </>
   );
