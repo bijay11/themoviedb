@@ -1,7 +1,7 @@
 import { useMovieWatchList } from "../contexts/MovieWatchList";
 
-const MediaObject = ({ item, overview, isWatchList }) => {
-  const { addToWatchList } = useMovieWatchList();
+const MediaObject = ({ item, overview, isWatchList = false }) => {
+  const { addToWatchList, removeWatchList } = useMovieWatchList();
 
   return (
     <div className="d-flex mb-3" style={{ border: "1px solid #ddd" }}>
@@ -15,13 +15,21 @@ const MediaObject = ({ item, overview, isWatchList }) => {
         <div className=" ms-3 moviePnl">
           <p>{overview}</p>
           <div className="text-end">
-            {!isWatchList && (
+            {!isWatchList ? (
               <button
                 type="button"
                 className="btn btn-outline-primary "
                 onClick={() => addToWatchList(item)}
               >
                 Add To Watch List
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-outline-danger "
+                onClick={() => removeWatchList(item.id)}
+              >
+                Remove
               </button>
             )}
 
