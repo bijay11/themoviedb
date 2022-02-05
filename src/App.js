@@ -10,11 +10,13 @@ import Movies from "./Pages/Landing Pages/Movies";
 import TvSeries from "./Pages/Landing Pages/TvSeries";
 import Trending from "./Pages/Landing Pages/Trending";
 import { AuthProvider } from "./contexts/AuthContext";
+import { useAuth } from "./contexts/AuthContext";
 import { MovieWatchListProvider } from "./contexts/MovieWatchList";
 import "./App.css";
 import Signup from "./Pages/Non Secure Pages/Signup";
 import Login from "./Pages/Non Secure Pages/Login";
 import PrivateRoute from "./Pages/PrivateRoute";
+import LandingPage from "./Pages/LandingPage";
 
 import WatchList from "./Pages/Landing Pages/WatchList";
 const PremiumMovies = lazy(() => import("./Pages/Landing Pages/PremiumMovies"));
@@ -30,7 +32,7 @@ function App() {
           <div className="container-fluid">
             <Suspense fallback={<p> Loading...</p>}>
               <Routes>
-                <Route exact path="/" element={<Login />} />
+                <Route exact path="/" element={<LandingPage />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route
                   element={
